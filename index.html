@@ -37,7 +37,7 @@
       const ONE_DAY = 1000 * 60 * 60 * 24;
       const progressBarFill = document.querySelector('.progress-bar-fill');
       const startDate = new Date(2023, 2, 19); // March 19, 2023
-      const endDate = new Date(2023, 3, 16); // April 16, 2023
+      const endDate = new Date(2023, 3, 20); // April 20, 2023
       const totalDays = (endDate - startDate) / ONE_DAY;
       const elapsedDays = Math.max(0, Math.min(totalDays, Math.round((new Date() - startDate) / ONE_DAY)));
       const progress = elapsedDays / totalDays * 100;
