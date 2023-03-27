@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Progress Bar Example</title>
+    <style>
+      .progress-bar {
+        width: 20%;
+        height: 20px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin: 0 auto;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background-color: #4CAF50;
+        border-radius: 5px;
+        transition: width 0.5s ease-in-out;
+      }
+      .icon {
+        display: block;
+        margin: 0 auto;
+        width: 400px;
+        height: 400px;
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZZIkmaDMH_VtD7--m2ymonUGh3atSPSQNmgboG-QIQp4CCtCc7Eyyfu_8ebepj50C8uw&usqp=CAU');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="icon"></div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 3.33%;"></div>
+    </div>
+    <script>
+      const ONE_DAY = 1000 * 60 * 60 * 24;
+      const progressBarFill = document.querySelector('.progress-bar-fill');
+      const startDate = new Date(2023, 2, 19); // March 19, 2023
+      const endDate = new Date(2023, 3, 16); // April 16, 2023
+      const totalDays = (endDate - startDate) / ONE_DAY;
+      const elapsedDays = Math.max(0, Math.min(totalDays, Math.round((new Date() - startDate) / ONE_DAY)));
+      const progress = elapsedDays / totalDays * 100;
+      progressBarFill.style.width = `${progress}%`;
+
+      const intervalId = setInterval(() => {
+        const elapsedDays = Math.max(0, Math.min(totalDays, Math.round((new Date() - startDate) / ONE_DAY)));
+        const progress = elapsedDays / totalDays * 100;
+        progressBarFill.style.width = `${progress}%`;
+
+        if (progress >= 100) {
+          clearInterval(intervalId);
+        }
+      }, ONE_DAY);
+    </script>
+
+  </body>
+</html>
