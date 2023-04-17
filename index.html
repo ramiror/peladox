@@ -26,6 +26,12 @@
         background-size: cover;
         background-repeat: no-repeat;
       }
+      .progress-text {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 16px;
+      }
     </style>
   </head>
   <body>
@@ -33,20 +39,26 @@
     <div class="progress-bar">
       <div class="progress-bar-fill" style="width: 3.33%;"></div>
     </div>
+    <div class="progress-text"></div>
     <script>
       const ONE_DAY = 1000 * 60 * 60 * 24;
       const progressBarFill = document.querySelector('.progress-bar-fill');
+      const progressText = document.querySelector('.progress-text');
       const startDate = new Date(2023, 2, 19); // March 19, 2023
       const endDate = new Date(2023, 3, 20); // April 20, 2023
       const totalDays = (endDate - startDate) / ONE_DAY;
       const elapsedDays = Math.max(0, Math.min(totalDays, Math.round((new Date() - startDate) / ONE_DAY)));
+      const remainingDays = totalDays - elapsedDays;
       const progress = elapsedDays / totalDays * 100;
       progressBarFill.style.width = `${progress}%`;
+      progressText.textContent = `amsiedad por ${remainingDays} días`;
 
       const intervalId = setInterval(() => {
         const elapsedDays = Math.max(0, Math.min(totalDays, Math.round((new Date() - startDate) / ONE_DAY)));
+        const remainingDays = totalDays - elapsedDays;
         const progress = elapsedDays / totalDays * 100;
         progressBarFill.style.width = `${progress}%`;
+        progressText.textContent = `faltan ${remainingDays} días`;
 
         if (progress >= 100) {
           clearInterval(intervalId);
